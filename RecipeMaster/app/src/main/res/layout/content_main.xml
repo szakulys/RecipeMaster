@@ -13,9 +13,26 @@
     tools:context="com.example.szak.recipemaster.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RecipeMaster"
+        android:id="@+id/menuPizza"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+         />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menuPizza"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/pizza1"
+        android:id="@+id/circleView"
+        android:alpha=".40"
         />
+
+    
+
+
 </RelativeLayout>

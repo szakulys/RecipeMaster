@@ -8,6 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(),R.drawable.pizza1);
+        Bitmap circularBitmap = ImageConverter.getRoundedCornerBitmap(bitmap, 100);
+
+        ImageView circularImageView = (ImageView)findViewById(R.id.menuPizza);
+        circularImageView.setImageBitmap(circularBitmap);
     }
 
     @Override
