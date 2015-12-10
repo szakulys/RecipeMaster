@@ -2,6 +2,7 @@ package com.example.szak.recipemaster;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         menuRecipeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                startActivity(new Intent(getApplicationContext(), PizzaRecipe.class));
 
             }
         });
