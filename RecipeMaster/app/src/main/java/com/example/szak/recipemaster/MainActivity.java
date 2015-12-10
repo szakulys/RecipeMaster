@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         final FloatingActionButton menuButton = (FloatingActionButton) findViewById(R.id.menuButton);
         final FloatingActionButton menuButtonX = (FloatingActionButton) findViewById(R.id.menuButtonX);
         final FloatingActionButton menuFacebookButton = (FloatingActionButton) findViewById(R.id.menuFacebookButton);;
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(),R.drawable.pizza1);
         Bitmap circularBitmap = ImageConverter.getRoundedCornerBitmap(bitmap, 100);
 
-        ImageView circularImageView = (ImageView)findViewById(R.id.menuPizza);
+        ImageView circularImageView = (ImageView)findViewById(R.id.circleView);
         circularImageView.setImageBitmap(circularBitmap);
     }
 

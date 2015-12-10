@@ -12,16 +12,11 @@
     tools:context="com.example.szak.recipemaster.MainActivity"
     tools:showIn="@layout/activity_main"
     android:gravity="center">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/menuPizza" />
+    
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/menuPizza"
         android:src="@drawable/pizza1"
         android:id="@+id/circleView"
         android:alpha=".40"
