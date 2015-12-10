@@ -98,7 +98,17 @@
                 android:src="@android:drawable/ic_input_add"
                 android:scaleType="center"
                 app:backgroundTint="#f6c907"
-                android:tint="#ffffff" />
+                android:tint="#ffffff"
+                android:visibility="visible" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/menuButtonX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_delete"
+                app:backgroundTint="#f6c907"
+                android:tint="#ffffff"
+                android:visibility="gone" />
 
         </LinearLayout>
 
