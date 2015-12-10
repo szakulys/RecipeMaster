@@ -44,19 +44,19 @@
                 android:text="Get the recipe"
                 android:textStyle="bold"
                 android:background="#ffffff"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:textColor="#000000" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/menuRecipeButton"
                 android:layout_width="@dimen/float_button_dimension"
                 android:layout_height="@dimen/float_button_dimension"
-                android:src="@android:drawable/ic_input_add"
-                android:scaleType="center"
-                app:backgroundTint="#f6c907"
-                android:tint="#ffffff"
+                android:src="@drawable/abc_btn_rating_star_off_mtrl_alpha"
+                app:backgroundTint="#f6070f"
                 android:visibility="gone"
                 android:layout_gravity="center"
-                android:layout_marginRight="22dp"/>
+                android:layout_marginRight="22dp"
+                android:scaleType="center" />
 
         </LinearLayout>
 
@@ -74,7 +74,8 @@
                 android:text="Zaloguj przez Facebooka"
                 android:textStyle="bold"
                 android:background="#ffffff"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:textColor="#000000" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/menuFacebookButton"

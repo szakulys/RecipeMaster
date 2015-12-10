@@ -12,7 +12,7 @@
     tools:context="com.example.szak.recipemaster.MainActivity"
     tools:showIn="@layout/activity_main"
     android:gravity="center">
-    
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="wrap_content"
