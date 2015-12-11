@@ -1,14 +1,11 @@
 package com.example.szak.recipemaster;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +26,8 @@ import java.io.InputStreamReader;
 
 public class PizzaRecipe extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +36,13 @@ public class PizzaRecipe extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         Toast.makeText(this, "Getting recipe", Toast.LENGTH_LONG).show();
         new SaveTheFeed().execute();
-        TextView testJson = (TextView) findViewById(R.id.testJSon);
-        testJson.setText("udalo sie");
+
 
     }
+
 
     public boolean onOptionsItemSelected(MenuItem item){
 
@@ -51,13 +51,14 @@ public class PizzaRecipe extends AppCompatActivity {
 
     }
 
-    class SaveTheFeed extends AsyncTask<Void, Void, Void>{
+    class SaveTheFeed extends AsyncTask<Void, Void, Void> {
 
-        String jsonString;
+        JSONObject jObject;
+        TextView testJson;
 
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Void... voids) {
 
             DefaultHttpClient httpClient = new DefaultHttpClient(new BasicHttpParams());
             HttpPost httpPost = new HttpPost("http://mooduplabs.com/test/info.php");
@@ -83,10 +84,15 @@ public class PizzaRecipe extends AppCompatActivity {
 
                 }
 
-                jsonString = sb.toString();
+                String jsonString = sb.toString();
+                jObject = new JSONObject(jsonString);
+
+
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -96,42 +102,35 @@ public class PizzaRecipe extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
 
+            testJson = (TextView) findViewById(R.id.testJSon);
 
-            JSONObject jObject = null;
             try {
-                jObject = new JSONObject(jsonString);
                 JSONArray ingrJArray = jObject.getJSONArray("ingredients");
                 JSONArray prepJArray = jObject.getJSONArray("preparing");
                 JSONArray imgJArray = jObject.getJSONArray("imgs");
 
                 String title = jObject.getString("title");
-                String description = jObject.getString("desciption");
+                String description = jObject.getString("description");
+                testJson.setText(description);
 
 
-
-                for(int i = 0; i < ingrJArray.length(); i++) {
+                for (int i = 0; i < ingrJArray.length(); i++) {
                     String ingredient = ingrJArray.getString(i);
                 }
 
-                for(int i = 0; i < prepJArray.length(); i++) {
+                for (int i = 0; i < prepJArray.length(); i++) {
                     String preparing = ingrJArray.getString(i);
                 }
 
-                for(int i = 0; i < imgJArray.length(); i++) {
-                    String img = ingrJArray.getString(i);
+                for (int i = 0; i < imgJArray.length(); i++) {
+                    String imgs = ingrJArray.getString(i);
                 }
-
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-
-
-
-
         }
-
 
     }
 
