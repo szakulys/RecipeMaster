@@ -39,6 +39,9 @@ public class PizzaRecipe extends AppCompatActivity {
 
         Toast.makeText(this, "Getting recipe", Toast.LENGTH_LONG).show();
         new SaveTheFeed().execute();
+        TextView testJson = (TextView) findViewById(R.id.testJSon);
+        testJson.setText("udalo sie");
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
@@ -50,8 +53,7 @@ public class PizzaRecipe extends AppCompatActivity {
 
     class SaveTheFeed extends AsyncTask<Void, Void, Void>{
 
-        String jsonString = "";
-        String result = "";
+        String jsonString;
 
 
         @Override
@@ -82,18 +84,9 @@ public class PizzaRecipe extends AppCompatActivity {
                 }
 
                 jsonString = sb.toString();
-
-                JSONObject jObject = new JSONObject(jsonString);
-
-                JSONArray jArray = jObject.getJSONArray("title");
-
-                outputTitles(jArray);
-
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -104,30 +97,42 @@ public class PizzaRecipe extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
 
 
-            TextView translationTextView = (TextView) findViewById(R.id.titlesTextView);
+            JSONObject jObject = null;
+            try {
+                jObject = new JSONObject(jsonString);
+                JSONArray ingrJArray = jObject.getJSONArray("ingredients");
+                JSONArray prepJArray = jObject.getJSONArray("preparing");
+                JSONArray imgJArray = jObject.getJSONArray("imgs");
 
-            translationTextView.setText(result);
-        }
+                String title = jObject.getString("title");
+                String description = jObject.getString("desciption");
 
-        protected void outputTitles(JSONArray jsonArray){
 
-            String[] titles = {"title", "ingredients", "preparing", "imgs"};
-            try{
 
-                for(int i = 0; i < jsonArray.length(); i++){
-
-                    JSONObject translationObject =
-                            jsonArray.getJSONObject(i);
-
-                    result = result + titles[i] + " : " +
-                            translationObject.getString(titles[i]) + "\n";
-
+                for(int i = 0; i < ingrJArray.length(); i++) {
+                    String ingredient = ingrJArray.getString(i);
                 }
+
+                for(int i = 0; i < prepJArray.length(); i++) {
+                    String preparing = ingrJArray.getString(i);
+                }
+
+                for(int i = 0; i < imgJArray.length(); i++) {
+                    String img = ingrJArray.getString(i);
+                }
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+
+
+
+
         }
+
+
     }
 
 
