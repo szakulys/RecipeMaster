@@ -229,6 +229,28 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:padding="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/facebookName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logged as"/>
+
+                <ImageView
+                    android:id="@+id/facebookAvatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="40dp"
+                    android:maxWidth="40dp"/>
+
+            </LinearLayout>
+
         </TableLayout>
 
 
