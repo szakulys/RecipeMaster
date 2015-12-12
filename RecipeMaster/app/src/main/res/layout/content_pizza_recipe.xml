@@ -37,7 +37,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingBottom="20dp"
-                android:text="test"/>
+                android:text="Loading"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,43 +61,43 @@
                     android:id="@+id/ingredientsContent0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/ingredientsContent1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/ingredientsContent2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/ingredientsContent3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/ingredientsContent4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/ingredientsContent5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/ingredientsContent6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
             </TableLayout>
 
@@ -124,43 +124,43 @@
                     android:id="@+id/preparingContent0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/preparingContent1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/preparingContent2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/preparingContent3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/preparingContent4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/preparingContent5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
                 <TextView
                     android:id="@+id/preparingContent6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test"/>
+                    android:text="Loading"/>
 
             </TableLayout>
 
@@ -199,7 +199,8 @@
                         android:src="@drawable/pizza_mood1"
                         android:maxHeight="160dp"
                         android:maxWidth="320dp"
-                        android:adjustViewBounds="true" />
+                        android:adjustViewBounds="true"
+                        android:onClick="saveToGallery0"/>
 
                     <ImageView
                         android:id="@+id/image1"
@@ -211,7 +212,8 @@
                         android:src="@drawable/pizza_mood2"
                         android:maxHeight="160dp"
                         android:paddingLeft="20dp"
-                        android:paddingRight="20dp"/>
+                        android:paddingRight="20dp"
+                        android:onClick="saveToGallery1"/>
 
                     <ImageView
                         android:id="@+id/image2"
@@ -221,7 +223,8 @@
                         android:maxHeight="160dp"
                         android:maxWidth="320dp"
                         android:src="@drawable/pizza_mood3"
-                        android:adjustViewBounds="true" />
+                        android:adjustViewBounds="true"
+                        android:onClick="saveToGallery2"/>
 
                 </LinearLayout>
             </HorizontalScrollView>

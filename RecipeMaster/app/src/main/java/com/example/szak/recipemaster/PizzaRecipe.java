@@ -1,13 +1,24 @@
 package com.example.szak.recipemaster;
 
+import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +32,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class PizzaRecipe extends AppCompatActivity {
 
@@ -40,16 +55,58 @@ public class PizzaRecipe extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         new SaveTheFeed().execute();
+        Toast.makeText(PizzaRecipe.this, "Getting data",
+                Toast.LENGTH_SHORT).show();
+        ImageView image0 = (ImageView) findViewById(R.id.image0);
 
 
     }
 
+    public void WantToSave(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setTitle("You clicked me! Now you have to save.")
+                .setMessage("What will it be?")
+                .setIcon(android.R.drawable.ic_menu_save)
+                .setPositiveButton("SAVE", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(PizzaRecipe.this, "I've conquered your free space!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setNegativeButton("No", null)						//Do nothing on no
+                .show();
+    }
 
     public boolean onOptionsItemSelected(MenuItem item){
 
         finish();
         return true;
 
+    }
+
+    private void galleryAddPic(String path) {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(path);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+    }
+
+
+
+
+    public void saveToGallery0(View view) {
+        WantToSave();
+    }
+
+    public void saveToGallery1(View view) {
+        WantToSave();
+    }
+
+    public void saveToGallery2(View view) {
+        WantToSave();
     }
 
     class SaveTheFeed extends AsyncTask<Void, Void, Void> {
