@@ -1,14 +1,16 @@
 package com.example.szak.recipemaster;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -18,14 +20,15 @@ import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class PizzaRecipe extends AppCompatActivity {
-
 
 
     @Override
@@ -56,6 +59,27 @@ public class PizzaRecipe extends AppCompatActivity {
         TextView pizzaContent;
         TextView ingredientsContent;
         TextView preparingContent;
+        ImageView images;
+        Bitmap[] sources;
+
+        public  Bitmap getBitmapFromURL(String src) {
+            try {
+                Log.e("src",src);
+                URL url = new URL(src);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap bitmap;
+                bitmap = BitmapFactory.decodeStream(input);
+                Log.e("Bitmap","returned");
+                return bitmap;
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e("Exception", e.getMessage());
+                return null;
+            }
+        }
 
 
         @Override
@@ -87,8 +111,14 @@ public class PizzaRecipe extends AppCompatActivity {
 
                 String jsonString = sb.toString();
                 jObject = new JSONObject(jsonString);
+                JSONArray imgJArray = jObject.getJSONArray("imgs");
+/*                sources = new Bitmap[imgJArray.length()];
 
-
+                for (int i = 0; i < imgJArray.length(); i++){
+                    String imgs = imgJArray.getString(i);
+                    sources[i] = getBitmapFromURL(imgs);
+                }
+*/
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -132,11 +162,13 @@ public class PizzaRecipe extends AppCompatActivity {
                     int j = i;
                     preparingContent.setText(++j + ". " + preparing);
                 }
-
+/*
                 for (int i = 0; i < imgJArray.length(); i++) {
-                    String imgs = ingrJArray.getString(i);
+                    int imgCon = R.id.image + i;
+                    images = (ImageView) findViewById(imgCon);
+                    images.setImageBitmap(sources[i]);
                 }
-
+*/
             } catch (JSONException e) {
                 e.printStackTrace();
             }
