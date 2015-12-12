@@ -36,8 +36,6 @@ public class PizzaRecipe extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        Toast.makeText(this, "Getting recipe", Toast.LENGTH_LONG).show();
         new SaveTheFeed().execute();
 
 
@@ -54,7 +52,10 @@ public class PizzaRecipe extends AppCompatActivity {
     class SaveTheFeed extends AsyncTask<Void, Void, Void> {
 
         JSONObject jObject;
-        TextView testJson;
+        TextView pizzaTitle;
+        TextView pizzaContent;
+        TextView ingredientsContent;
+        TextView preparingContent;
 
 
         @Override
@@ -102,24 +103,34 @@ public class PizzaRecipe extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
 
-            testJson = (TextView) findViewById(R.id.testJSon);
+            pizzaContent = (TextView) findViewById(R.id.contentPizza);
+            pizzaTitle = (TextView) findViewById(R.id.titlePizza);
 
             try {
+
+                String title = jObject.getString("title");
+                pizzaTitle.setText(title + ":");
+                String description = jObject.getString("description");
+                pizzaContent.setText(description);
+
                 JSONArray ingrJArray = jObject.getJSONArray("ingredients");
                 JSONArray prepJArray = jObject.getJSONArray("preparing");
                 JSONArray imgJArray = jObject.getJSONArray("imgs");
 
-                String title = jObject.getString("title");
-                String description = jObject.getString("description");
-                testJson.setText(description);
-
 
                 for (int i = 0; i < ingrJArray.length(); i++) {
                     String ingredient = ingrJArray.getString(i);
+                    int ingCon = R.id.ingredientsContent + i;
+                    ingredientsContent = (TextView) findViewById(ingCon);
+                    ingredientsContent.setText("- " + ingredient);
                 }
 
                 for (int i = 0; i < prepJArray.length(); i++) {
-                    String preparing = ingrJArray.getString(i);
+                    String preparing = prepJArray.getString(i);
+                    int prepCon = R.id.preparingContent + i;
+                    preparingContent = (TextView) findViewById(prepCon);
+                    int j = i;
+                    preparingContent.setText(++j + ". " + preparing);
                 }
 
                 for (int i = 0; i < imgJArray.length(); i++) {
